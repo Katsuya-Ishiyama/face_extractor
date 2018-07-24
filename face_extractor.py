@@ -52,15 +52,23 @@ def generate_face_image_path(src_image_path, face_image_dir, face_id):
 
 
 src_dir = pathlib.Path('/home/ishiyama/image_scraper/download/')
+output_dir = pathlib.Path('/home/ishiyama/face_extractor/result/')
+if not output_dir.exists():
+    output_dir.mkdir()
+
 member_dirs = [p for p in src_dir.iterdir()]
 for _dir in member_dirs:
     for image_path in _dir.iterdir():
         faces_list = extract_faces_from_image(
             path=image_path,
             scale_factor=1.1,
-            min_neighbors=(1, 1)
+            min_neighbors=1
         )
         for face_id, face in enumerate(faces_list, start=1):
-            pass
-        #print(image_path)
+            save_path = generate_face_image_path(
+                src_image_path=image_path,
+                face_image_dir=output_dir,
+                face_id=face_id
+            )
+            cv2.imwrite(save_path, face)
 
