@@ -40,12 +40,27 @@ def extract_faces_from_image(path, scale_factor, min_neighbors):
     return faces
 
 
-def generate_face_image_path(src_image_path):
-    pass
+def generate_face_image_path(src_image_path, face_image_dir, face_id):
+    src_image_id = src_image_path.stem
+    suffix = src_image_path.suffix
+    face_image_id = src_image_id + '{:02d}'.format(face_id)
+    face_image_filename = face_image_id + suffix
+    _face_image_dir = pathlib.Path(face_image_dir)
+    member_id = str(src_image_path.parent).split(',')[-1]
+    face_image_path = _face_image_dir.joinpath(member_id, face_image_filename)
+    return pathlib.Path(face_image_path)
 
 
 src_dir = pathlib.Path('/home/ishiyama/image_scraper/download/')
 member_dirs = [p for p in src_dir.iterdir()]
 for _dir in member_dirs:
     for image_path in _dir.iterdir():
-        pass
+        faces_list = extract_faces_from_image(
+            path=image_path,
+            scale_factor=1.1,
+            min_neighbors=(1, 1)
+        )
+        for face_id, face in enumerate(faces_list, start=1):
+            pass
+        #print(image_path)
+
