@@ -18,11 +18,11 @@ def get_commandline_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--src-dir',
                         type=str,
-                        requierd=True,
+                        required=True,
                         help='a path to a directory of source images.')
     parser.add_argument('--output-dir',
                         type=str,
-                        requierd=True,
+                        required=True,
                         help='a path to a directory to output images')
     args = parser.parse_args()
     return args
