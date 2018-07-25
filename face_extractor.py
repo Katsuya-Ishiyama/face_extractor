@@ -3,7 +3,6 @@
 import argparse
 import logging
 import pathlib
-import sys
 import cv2
 
 
