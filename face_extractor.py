@@ -113,8 +113,7 @@ def main():
                 save_path_parent_dir = save_path.parent
                 if not save_path_parent_dir.exists():
                     save_path_parent_dir.mkdir()
-                    logger.info("Directory {}".format(save_path_parent_dir)
-                                " was created since it doesn't exist")
+                    logger.info("Directory {} was created since it doesn't exist".format(save_path_parent_dir))
                 cv2.imwrite(str(save_path), face)
                 logger.debug('{} was successfully saved.'.format(save_path))
 
