@@ -67,6 +67,22 @@ def extract_faces_from_image(path, scale_factor, min_neighbors):
 
 
 def generate_face_image_path(src_image_path, face_image_dir, face_id):
+    """ Generate a file path of an extracted face image
+
+    Arguments
+    ---------
+    src_image_path: str
+        a directory path which source images have been saved at.
+    face_image_dir: str
+        a directory path where extracted face images will be saved.
+    face_id: int
+        an ID of an extracted image.
+
+    Returns
+    -------
+        pathlib.Path object.
+        a path which is used at saving an extracted image.
+    """
     src_image_id = src_image_path.stem
     suffix = src_image_path.suffix
     face_image_id = src_image_id + '{:02d}'.format(face_id)
